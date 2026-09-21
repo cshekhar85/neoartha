@@ -41,6 +41,15 @@
     .navlinks{display:flex;gap:36px;font-size:13px;font-weight: 500;color:var(--muted)}
     .navlinks a{transition:color .2s ease}
     .navlinks a:hover{color:var(--accent)}
+    .nav-toggle{display:none;background:none;border:none;padding:0;cursor:pointer;width:26px;height:20px;position:relative;flex-shrink:0}
+    .nav-toggle span{position:absolute;left:0;right:0;height:2px;background:var(--ink);transition:transform .2s ease,opacity .2s ease}
+    .nav-toggle span:nth-child(1){top:0}
+    .nav-toggle span:nth-child(2){top:9px}
+    .nav-toggle span:nth-child(3){top:18px}
+    .nav-toggle.open span:nth-child(1){top:9px;transform:rotate(45deg)}
+    .nav-toggle.open span:nth-child(2){opacity:0}
+    .nav-toggle.open span:nth-child(3){top:9px;transform:rotate(-45deg)}
+    .mobile-menu{display:none}
 
     /* Hero Section */
     .hero{padding:130px 0 120px;border-bottom:1px solid var(--line);position:relative; overflow:hidden;}
@@ -158,6 +167,16 @@
     /* Responsive */
     @media(max-width:900px){
       .navlinks{display:none}
+      .nav-toggle{display:block}
+      .mobile-menu.open{
+        display:flex;flex-direction:column;
+        position:absolute;top:100%;left:0;right:0;
+        background:var(--bg);border-bottom:1px solid var(--line);
+        padding:8px 0 20px;box-shadow:0 16px 28px rgba(0,0,0,.06);
+      }
+      .mobile-menu a{padding:14px 0;font-size:15px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--line)}
+      .mobile-menu a:last-child{border-bottom:none}
+      .mobile-menu a:hover{color:var(--accent)}
       .hero{padding:80px 0}
       section{padding:70px 0}
       .section-head,.feature,.about{grid-template-columns:1fr;gap:30px}
@@ -177,6 +196,16 @@
       <nav>
         <a class="logo" href="#" aria-label="NeoArtha"><span class="logo-neo">Neo</span><span class="logo-artha">Artha</span></a>
         <div class="navlinks">
+          <a href="#work">What we do</a>
+          <a href="/research.html">Research</a>
+          <a href="#approach">Approach</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="mobile-menu" id="mobileMenu">
           <a href="#work">What we do</a>
           <a href="/research.html">Research</a>
           <a href="#approach">Approach</a>
@@ -354,5 +383,32 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileMenu');
+      if(!toggle || !menu) return;
+      toggle.addEventListener('click', function(){
+        var open = menu.classList.toggle('open');
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', function(){
+          menu.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      window.addEventListener('resize', function(){
+        if(window.innerWidth > 900){
+          menu.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
