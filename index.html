@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NeoArtha — practical intelligence, research and playbooks for markets, business and global opportunities.">
+  <title>NeoArtha — Practical Intelligence</title>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --paper: #faf8f6;
+      --ink: #11110f;
+      --muted: #66635d;
+      --line: #eeebe4;
+      --border-dark: #2b181a;
+      --accent: #990012;       /* Intense deep red / dark crimson (Pure Kashmiri Saffron) */
+      --accent-light: #fdf2f2;
+      --accent-mid: #d43b48;
+      --max: 1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:auto;padding:0 32px}
+    
+    /* Sophisticated Header & Nav */
+    nav{
+      height:90px;display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo{font-family:Georgia,serif;font-size:26px;letter-spacing:.08em;color:var(--ink); font-weight: 500;}
+    .logo-neo { color: var(--ink); } .logo-artha { color: var(--accent); }
+    .navlinks{display:flex;gap:36px;font-size:13px;font-weight: 500;color:var(--muted)}
+    .navlinks a{transition:color .2s ease}
+    .navlinks a:hover{color:var(--accent)}
+
+    /* Hero Section */
+    .hero{padding:130px 0 120px;border-bottom:1px solid var(--line);position:relative; overflow:hidden;}
+    .eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--accent);font-weight:700;margin-bottom:16px;display:inline-block;}
+    h1{
+      font-family:Georgia,"Times New Roman",serif;font-weight:400;
+      font-size:clamp(52px, 8.5vw, 104px);line-height:.95;letter-spacing:-.045em;
+      max-width:960px;margin:0 0 32px;color:var(--ink);
+    }
+    h1 em { font-style: italic; color: var(--accent); font-family: Georgia, serif; }
+    .hero p{max-width:640px;font-size:20px;color:var(--muted);line-height:1.6}
+    .actions{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap}
+    
+    .btn{
+      padding:15px 28px;border:1px solid var(--border-dark);font-size:13px;font-weight:600;
+      background:transparent;color:var(--border-dark);cursor:pointer;transition:all .25s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing:.04em;
+    }
+    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn:hover{transform:translateY(-2px);box-shadow: 0 8px 24px rgba(153, 0, 18, 0.15);}
+    .btn.primary:hover{background:#7a000e; border-color: #7a000e;}
+
+    /* Layout Sections */
+    section{padding:100px 0;border-bottom:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:60px;align-items:start;}
+    .section-head h2{font-family:Georgia,serif;font-size:42px;line-height:1.1;font-weight:400;margin:0;letter-spacing:-.03em;color:var(--ink)}
+    .section-head p{color:var(--muted);max-width:580px;margin:0;font-size:17px}
+    .section-intro{max-width:640px;margin-bottom:60px}
+    .section-intro p{color:var(--muted);margin:0;font-size:17px}
+
+    /* Cards Grid */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .card{
+      background:var(--paper);padding:40px 36px;border:1px solid var(--line);
+      display:flex;flex-direction:column;position:relative;transition:all .3s ease;
+    }
+    .card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow: 0 12px 30px rgba(0,0,0,0.03);}
+    .card .num{font-size:11px;color:var(--accent);letter-spacing:.15em;font-weight:700}
+    .card h3{font-family:Georgia,serif;font-size:26px;font-weight:400;margin:36px 0 14px;color:var(--ink)}
+    .card p{color:var(--muted);font-size:14px;margin:0;line-height:1.6}
+
+    /* Feature Block */
+    .feature{display:grid;grid-template-columns:1.2fr 0.8fr;gap:0;border:1px solid var(--line);background:var(--paper);overflow:hidden;}
+    .feature-copy{padding:70px}
+    .feature-copy h2{font-family:Georgia,serif;font-weight:400;font-size:46px;line-height:1.08;letter-spacing:-.03em;margin:20px 0 24px;color:var(--ink)}
+    .feature-copy p{color:var(--muted);max-width:520px;font-size:16px;margin-bottom:32px;}
+    
+    .feature-art{
+      min-height:460px;background:#1a080a;color:#fff;
+      display:flex;align-items:center;justify-content:center;padding:40px;
+      position:relative;overflow:hidden;
+    }
+    .feature-art::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(153,0,18,0.3) 0%, transparent 70%);
+    }
+
+    /* New Vector Graphic Styles */
+    .globe-india-svg {
+      width: 260px;
+      height: 260px;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 4px 20px rgba(153,0,18,0.4));
+    }
+
+    .orbit-mark{
+      position:absolute;width:120px;height:120px;border:1px solid rgba(212,59,72,0.45);
+      border-radius:50%;transform:rotate(-28deg);
+    }
+    .orbit-mark::before{
+      content:"";position:absolute;left:-1px;top:50%;width:122px;height:1px;
+      background:rgba(212,59,72,0.35);transform:translateY(-50%);
+    }
+    .orbit-dot{
+      position:absolute;width:10px;height:10px;border-radius:50%;
+      background:var(--accent);right:8px;top:50%;transform:translateY(-50%);
+      box-shadow:0 0 18px rgba(153,0,18,0.45);
+    }
+
+    /* Principles */
+    .principles{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background: var(--line); gap: 1px;}
+    .principle{padding:36px 30px;background:var(--paper);transition:background .2s ease;}
+    .principle:hover{background:#fff;}
+    .principle strong{font-family:Georgia,serif;font-size:22px;font-weight:400;display:block;margin-bottom:10px;color:var(--ink)}
+    .principle p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+
+    /* About Section */
+    .about{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;}
+    .about h2{font-family:Georgia,serif;font-weight:400;font-size:50px;line-height:1.05;margin:0;letter-spacing:-.03em;color:var(--ink)}
+    .about p{font-size:17px;color:var(--muted);margin-top:0;line-height:1.7}
+    .about-sub { font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;margin:0 0 24px;letter-spacing:-.02em;color:var(--ink); }
+
+    /* Contact form */
+    .contact-form{max-width:640px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .form-field{margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
+    .form-field label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+    .form-field input,.form-field textarea{
+      font-family:Inter,sans-serif;font-size:15px;padding:14px 16px;border:1px solid var(--line);
+      background:var(--paper);color:var(--ink);resize:vertical;
+    }
+    .form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--accent)}
+    .contact-form .btn{margin-top:4px}
+
+    /* Footer */
+    footer{padding:45px 0;color:var(--muted);font-size:12px;background:var(--bg)}
+    .footer-inner{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{color:var(--muted);transition:color .2s ease}
+    .footer-links a:hover{color:var(--accent)}
+    footer .stamp { display: flex; align-items: center; gap: 8px; }
+    footer .saffron-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; }
+
+    /* Responsive */
+    @media(max-width:900px){
+      .navlinks{display:none}
+      .hero{padding:80px 0}
+      section{padding:70px 0}
+      .section-head,.feature,.about{grid-template-columns:1fr;gap:30px}
+      .cards{grid-template-columns:1fr}
+      .principles{grid-template-columns:1fr 1fr}
+      .feature-copy{padding:40px 28px}
+      .feature-copy h2{font-size:36px}
+      .about h2{font-size:38px}
+      .form-row{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="logo" href="#" aria-label="NeoArtha"><span class="logo-neo">Neo</span><span class="logo-artha">Artha</span></a>
+        <div class="navlinks">
+          <a href="#work">What we do</a>
+          <a href="/reports/">Research</a>
+          <a href="#approach">Approach</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Independent research &amp; digital intelligence</div>
+        <h1>New paths.<br>Practical <em>intelligence.</em></h1>
+        <p>NeoArtha makes business research, opportunity analysis and practical planning accessible to aspiring and small entrepreneurs — without the cost or complexity of a traditional consulting engagement.</p>
+        <div class="actions">
+          <a class="btn primary" href="/reports/">Explore the research</a>
+          <a class="btn" href="#about">About NeoArtha</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What we're trying to change</h2>
+          <p>Many people have a product idea, a skill, some capital or access to a market — but not the research and planning resources needed to evaluate the opportunity properly.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="num">01 / RESEARCH</div>
+            <h3>Opportunity Reports</h3>
+            <p>Focused research into industries, markets, products and emerging commercial opportunities.</p>
+          </article>
+          <article class="card">
+            <div class="num">02 / PLANNING</div>
+            <h3>Business Plans</h3>
+            <p>Detailed business models covering feasibility, margins, projections, financing, capital requirements and break-even analysis.</p>
+          </article>
+          <article class="card">
+            <div class="num">03 / EXECUTION</div>
+            <h3>Execution Planners</h3>
+            <p>Defined activity planners that take you from idea to execution through structured, practical next steps.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="wrap">
+        <div class="section-intro">
+          <p>A growing library of focused digital products that move from opportunity research to business planning and practical execution.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-copy">
+            <h2>Global opportunities, made practical.</h2>
+            <p>Our first research products focus on identifying commercially relevant opportunities, understanding the market around them, and presenting the information in a format that can actually be used.</p>
+          </div>
+          <div class="feature-art">
+            <!-- Modern Globe & India Vector Graphic -->
+            <svg class="globe-india-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer Globe Ring -->
+              <circle cx="100" cy="100" r="85" stroke="rgba(212, 59, 72, 0.3)" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <circle cx="100" cy="100" r="75" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+              
+              <!-- Globe Latitude / Longitude Arcs -->
+              <ellipse cx="100" cy="100" rx="75" ry="30" stroke="rgba(212, 59, 72, 0.25)" stroke-width="1" transform="rotate(-15 100 100)"/>
+              <ellipse cx="100" cy="100" rx="30" ry="75" stroke="rgba(212, 59, 72, 0.25)" stroke-width="1" transform="rotate(-15 100 100)"/>
+              <line x1="100" y1="25" x2="100" y2="175" stroke="rgba(212, 59, 72, 0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="25" y1="100" x2="175" y2="100" stroke="rgba(212, 59, 72, 0.2)" stroke-width="1" stroke-dasharray="2 2"/>
+
+              <!-- Stylized India Contour / Peninsula Path -->
+              <path d="M108 85 C112 88, 118 96, 115 105 C112 114, 107 122, 103 130 C100 137, 96 145, 93 152 C91 146, 94 138, 97 131 C101 122, 105 114, 107 106 C109 98, 104 90, 108 85 Z" 
+                    fill="#d43b48" opacity="0.85" filter="drop-shadow(0 0 6px rgba(212,59,72,0.8))"/>
+              <path d="M103 76 C107 78, 111 81, 109 85 C106 88, 101 84, 98 81 C96 78, 99 74, 103 76 Z" 
+                    fill="#fdf2f2" opacity="0.9"/> <!-- Northern region anchor -->
+
+              <!-- Orbital Connection Ring -->
+              <circle cx="100" cy="100" r="92" stroke="var(--accent-mid)" stroke-width="1" opacity="0.4" stroke-dasharray="8 12"/>
+              
+              <!-- Highlight Nodes (Market Hubs) -->
+              <circle cx="107" cy="106" r="3.5" fill="#ffffff" stroke="#990012" stroke-width="1.5"/>
+              <circle cx="145" cy="70" r="2" fill="#d43b48"/>
+              <circle cx="55" cy="130" r="2" fill="#d43b48"/>
+              <circle cx="130" cy="135" r="2.5" fill="#fdf2f2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The NeoArtha approach</h2>
+          <p>From idea to opportunity — with research, structure and practical next steps.</p>
+        </div>
+        <div class="principles">
+          <div class="principle">
+            <strong>Research</strong>
+            <p>Start with primary and credible information.</p>
+          </div>
+          <div class="principle">
+            <strong>Structure</strong>
+            <p>Organise complexity into a clear framework.</p>
+          </div>
+          <div class="principle">
+            <strong>Insight</strong>
+            <p>Separate meaningful signals from background noise.</p>
+          </div>
+          <div class="principle">
+            <strong>Action</strong>
+            <p>Leave the reader with something usable.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="about">
+          <h2>A small research studio with a wide horizon.</h2>
+          <div>
+            <h3 class="about-sub">Democratising business research, one practical report at a time.</h3>
+            <p>NeoArtha is an independent digital research and publishing platform built around a simple idea: useful business intelligence should be accessible to more people.</p>
+            <p>We research markets, products, trade and business opportunities, then turn the useful parts into focused opportunity reports, business plans and execution planners.</p>
+            <p><strong style="color:var(--ink);">For the aspiring entrepreneur, the curious builder, and anyone looking for a new path.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Get in touch</h2>
+          <p>Send us a note for any ideas or suggestions and we'll reply by email.</p>
+        </div>
+        <form class="contact-form" action="https://formsubmit.co/hello@neoartha.com" method="POST">
+          <input type="hidden" name="_subject" value="New message from NeoArtha site">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" name="name" type="text" required>
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button class="btn primary" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 NeoArtha. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="/policies.html#privacy">Privacy Policy</a>
+        <a href="/policies.html#refund">Refund Policy</a>
+        <a href="/policies.html#delivery">Delivery Policy</a>
+      </div>
+      <div class="stamp">
+        <span class="saffron-dot"></span>
+        <span>Research · Intelligence · Opportunity</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
