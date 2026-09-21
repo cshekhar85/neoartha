@@ -103,7 +103,11 @@
 
     .no-results{padding:60px 0;text-align:center;color:var(--muted);font-size:15px;display:none;}
 
-    footer{padding:45px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--muted);font-size:12px;background:var(--bg);border-top:1px solid var(--line);}
+    footer{padding:45px 0;color:var(--muted);font-size:12px;background:var(--bg);border-top:1px solid var(--line);}
+    .footer-inner{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+    .footer-links{display:flex;gap:24px;}
+    .footer-links a{color:var(--muted);transition:color .2s ease;}
+    .footer-links a:hover{color:var(--accent);}
     footer .stamp{display:flex;align-items:center;gap:8px;}
     footer .saffron-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;}
 
@@ -118,7 +122,7 @@
       }
       .az-rail a{width:auto;padding:0 8px;}
       .report-row{grid-template-columns:1fr;gap:8px;text-align:left;}
-      footer{flex-direction:column;align-items:flex-start;}
+      .footer-inner{flex-direction:column;align-items:flex-start;}
     }
   </style>
 </head>
@@ -129,9 +133,10 @@
         <a class="logo" href="/" aria-label="NeoArtha"><span class="logo-neo">Neo</span><span class="logo-artha">Artha</span></a>
         <div class="navlinks">
           <a href="/#work">What we do</a>
-          <a href="/reports/" class="active">Research</a>
+          <a href="/research.html" class="active">Research</a>
           <a href="/#approach">Approach</a>
           <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
         </div>
       </nav>
     </div>
@@ -201,7 +206,7 @@
               <span class="count">1 report</span>
             </div>
             <div class="report-list">
-              <a class="report-row" href="/reports/domestic-ayurveda-retail.html" data-title="Ayurveda Retail Expansion" data-cat="Domestic">
+              <a class="report-row" href="/research/domestic-ayurveda-retail.html" data-title="Ayurveda Retail Expansion" data-cat="Domestic">
                 <span class="cat-tag">Domestic</span>
                 <h3>Ayurveda Retail Expansion</h3>
                 <span class="view-link">View</span>
@@ -215,7 +220,7 @@
               <span class="count">1 report</span>
             </div>
             <div class="report-list">
-              <a class="report-row" href="/reports/export-gcc-trade-opportunity.html" data-title="GCC Trade Opportunity" data-cat="Export">
+              <a class="report-row" href="/research/export-gcc-trade-opportunity.html" data-title="GCC Trade Opportunity" data-cat="Export">
                 <span class="cat-tag">Export</span>
                 <h3>GCC Trade Opportunity</h3>
                 <span class="view-link">View</span>
@@ -229,7 +234,7 @@
               <span class="count">1 report</span>
             </div>
             <div class="report-list">
-              <a class="report-row" href="/reports/export-lemongrass-oil.html" data-title="Lemongrass Oil Export" data-cat="Export">
+              <a class="report-row" href="/research/export-lemongrass-oil.html" data-title="Lemongrass Oil Export" data-cat="Export">
                 <span class="cat-tag">Export</span>
                 <h3>Lemongrass Oil Export</h3>
                 <span class="view-link">View</span>
@@ -245,8 +250,13 @@
   </main>
 
   <footer>
-    <div class="wrap" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+    <div class="wrap footer-inner">
       <span>© 2026 NeoArtha. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="/policies.html#privacy">Privacy Policy</a>
+        <a href="/policies.html#refund">Refund Policy</a>
+        <a href="/policies.html#delivery">Delivery Policy</a>
+      </div>
       <div class="stamp">
         <span class="saffron-dot"></span>
         <span>Research · Intelligence · Opportunity</span>
